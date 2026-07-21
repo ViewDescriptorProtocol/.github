@@ -1,0 +1,60 @@
+# The hub view of VDP: one descriptor at the center; several equally valid
+# transports bring it to the client, and template resolution is deliberately
+# OUTSIDE the protocol — the URL is an identifier, and where the bytes come
+# from is the deployment's choice.
+# Rendered twice for the org profile: --theme=0 (light) and --theme=200 (dark).
+
+direction: down
+style.fill: transparent
+
+transports: How the descriptor arrives — any of {
+  lh: "Link header\nrel=\"view-descriptor\""
+  inline: "Inline _view / _views\n(HAL-style body)"
+  vt: "View-Template header"
+  wk: "/.well-known/vdp\ndiscovery & prefetch"
+}
+
+payload: |json
+  {
+    "revenue": 48200,
+    "_view": {
+      "template": "example.com/templates/dashboard",
+      "slots": {
+        "chart": { "template": "example.com/templates/chart" }
+      }
+    }
+  }
+|
+
+client: Client / BFF {
+  shape: rectangle
+}
+
+sources: Template source — not defined by VDP {
+  style.stroke-dash: 4
+  bundled: Bundled in the app
+  page: Shipped with the page
+  bff: BFF-local or\ntemplate microservice
+  remote: Fetched remotely\n(CDN, template server)
+}
+
+ui: Rendered natively {
+  grid-columns: 2
+  android: Android
+  ios: iOS
+  web: Web
+  desktop: Desktop
+}
+
+transports.lh -> payload
+transports.inline -> payload
+transports.vt -> payload
+transports.wk -> payload
+
+payload -> client: the template URL is an\nidentifier — a namespace,\nnot a fetch instruction
+
+client -> sources: resolves each identifier however\nthe deployment chooses — any of {
+  style.stroke-dash: 4
+}
+
+client -> ui: renders templates\nwith the data

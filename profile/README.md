@@ -9,15 +9,16 @@
 <p align="center">
   A JSON descriptor tells any client — Android, iOS, browser, desktop — which
   templates render which data, using slots and template URIs. The server decides
-  how its data is presented; each client fetches the named templates and renders
-  them natively. The data payload stays clean, templates stay independently
-  cacheable, and no client hardcodes a view again.
+  how its data is presented; each client resolves those template identifiers
+  however its deployment chooses — a bundle inside the app, templates shipped
+  with the page, a BFF-local store, or a remote fetch — and renders natively.
+  The data payload stays clean, and no client hardcodes a view again.
 </p>
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/ViewDescriptorProtocol/.github/main/profile/assets/vdp-flow-dark.svg">
-    <img alt="How VDP works: an API server responds with data plus a view descriptor; the client fetches the named templates from a template server and composes them into natively rendered UI on Android, iOS, web, and desktop" src="https://raw.githubusercontent.com/ViewDescriptorProtocol/.github/main/profile/assets/vdp-flow-light.svg" width="680">
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/ViewDescriptorProtocol/.github/main/profile/assets/vdp-hub-dark.svg">
+    <img alt="How VDP works: a view descriptor reaches the client by any of several transports (Link header, inline _view, View-Template header, well-known discovery); the template URL is an identifier the client resolves from any source — bundled in the app, shipped with the page, BFF-local, or fetched remotely — before rendering natively on Android, iOS, web, and desktop" src="https://raw.githubusercontent.com/ViewDescriptorProtocol/.github/main/profile/assets/vdp-hub-light.svg" width="760">
   </picture>
 </p>
 
@@ -27,7 +28,6 @@
 |---|---|
 | [**VDP**](https://github.com/ViewDescriptorProtocol/VDP) | The specification — view descriptor format, transports, discovery, conformance — plus JSON Schemas and validated examples |
 | [**golang-vdp-demo**](https://github.com/ViewDescriptorProtocol/golang-vdp-demo) | A working end-to-end demo in Go: API, template server, and BFF client talking real HTTP, with a trace panel showing the protocol at work |
-| [**HTMT**](https://github.com/ViewDescriptorProtocol/HTMT) | HyperText Markup Templating — JSONPath-based `ht-*` attributes for binding data to HTML, a natural template language for VDP on the web |
 | [**Website**](https://vdprotocol.org) | The rendered specification, schemas, and changelog |
 
 ## Status

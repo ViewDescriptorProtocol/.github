@@ -1,0 +1,43 @@
+# The VDP story in one picture: the server attaches a view descriptor to
+# ordinary data; any client resolves the named templates and renders natively.
+# Rendered twice for the org profile: --theme=0 (light) and --theme=200 (dark).
+
+direction: down
+style.fill: transparent
+
+api: API server {
+  shape: rectangle
+}
+
+payload: |json
+  {
+    "revenue": 48200,
+    "_view": {
+      "template": ".../templates/dashboard",
+      "slots": {
+        "chart": { "template": ".../templates/chart" }
+      }
+    }
+  }
+|
+
+cdn: Template server / CDN {
+  shape: cylinder
+}
+
+client: VDP client {
+  shape: rectangle
+}
+
+ui: Rendered natively {
+  grid-columns: 2
+  android: Android
+  ios: iOS
+  web: Web
+  desktop: Desktop
+}
+
+api -> payload: data +\nview descriptor
+payload -> client
+client -> cdn: fetch templates\nby URL (cached)
+client -> ui: compose slots\n& render

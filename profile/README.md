@@ -18,7 +18,7 @@
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/ViewDescriptorProtocol/.github/main/profile/assets/vdp-hub-dark.svg">
-    <img alt="How VDP works: a view descriptor reaches the client by any of several transports (Link header, inline _view, View-Template header, well-known discovery); the template URL is an identifier the client resolves from any source — bundled in the app, shipped with the page, BFF-local, or fetched remotely — before rendering natively on Android, iOS, web, and desktop" src="https://raw.githubusercontent.com/ViewDescriptorProtocol/.github/main/profile/assets/vdp-hub-light.svg" width="760">
+    <img alt="How VDP works: a view descriptor reaches any client — mobile, web, desktop, or a BFF — by any of several transports (HTTP Link header, inline _view/_views, View-Template header, well-known discovery); each template URL is an identifier the client resolves from any source — bundled in the app, shipped with the page, BFF-local, or fetched remotely — none of which is defined by VDP" src="https://raw.githubusercontent.com/ViewDescriptorProtocol/.github/main/profile/assets/vdp-hub-light.svg" width="720">
   </picture>
 </p>
 

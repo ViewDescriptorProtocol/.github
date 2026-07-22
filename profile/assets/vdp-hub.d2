@@ -2,12 +2,14 @@
 # descriptor to any kind of client, and template resolution is deliberately
 # OUTSIDE the protocol — the URL is an identifier, and where the template
 # comes from is the deployment's choice.
-# Rendered twice for the org profile: --theme=0 (light) and --theme=200 (dark).
+# Rendered twice for the org profile (with --pad 12):
+#   --theme=0 (light) and --theme=200 (dark).
 
 direction: down
 style.fill: transparent
 
 transports: How the descriptor arrives — any of {
+  grid-columns: 2
   lh: "HTTP Link header\nrel=\"view-descriptor\""
   inline: "Inline _view / _views\n(HAL-style body)"
   vt: "View-Template header"
@@ -23,6 +25,7 @@ clients: Clients {
 }
 
 sources: Template source — not defined by VDP {
+  grid-columns: 2
   style.stroke-dash: 4
   bundled: Bundled in the app
   page: Shipped with the page
@@ -30,10 +33,7 @@ sources: Template source — not defined by VDP {
   remote: Fetched remotely\n(CDN, template server)
 }
 
-transports.lh -> clients
-transports.inline -> clients
-transports.vt -> clients
-transports.wk -> clients
+transports -> clients: view descriptor
 
 clients -> sources: resolves each template identifier —\na namespace, not a fetch instruction —\nhowever the deployment chooses, any of {
   style.stroke-dash: 4
